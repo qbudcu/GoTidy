@@ -1,4 +1,4 @@
-package main
+package tidy
 
 /*
 	#cgo LDFLAGS: -ltidy
@@ -29,7 +29,8 @@ func New() *Tidy {
 	t.tdoc = C.tidyCreate()
 	return t
 }
-func TidyFilter(s string) string {
+
+func Filter(s string) string {
 	t := New()
 	defer t.Free()
 	t.InputEncoding(Utf8)

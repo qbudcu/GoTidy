@@ -1,1 +1,3 @@
-module "github.com/qbudcu/GoTidy"
+module github.com/qbudcu/GoTidy
+
+go 1.15
