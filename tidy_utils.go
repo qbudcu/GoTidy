@@ -1,4 +1,4 @@
-package tidyUtil
+package main
 
 /*
 	#cgo LDFLAGS: -ltidy

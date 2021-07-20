@@ -1,1 +1,1 @@
-module "GoTidy"
+module "github.com/qbudcu/GoTidy"
