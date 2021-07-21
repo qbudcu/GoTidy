@@ -33,13 +33,12 @@ func New() *Tidy {
 func Filter(s string) string {
 	t := New()
 	defer t.Free()
-	t.InputEncoding(Utf8)
+	t.CharEncoding(Utf8)
 	t.ShowWarnings(false)
-	t.ShowErrors(0)
 	t.Quiet(true)
 	t.NewBlocklevelTags("aside,blackbordertext") // 将new-blocklevel-tags属性设置为aside,blackbordertext
 	log.Println("tidy 1")
-	output, _ := t.Tidy(s)
+ 	output, _ := t.Tidy(s)
 	log.Println("tidy 2")
 	return output
 }
@@ -617,6 +616,13 @@ func (this *Tidy) optSetString(opt C.TidyOptionId, val *C.tmbchar) (bool, error)
 
 func (this *Tidy) optSetInt(opt C.TidyOptionId, val C.ulong) (bool, error) {
 	if C.tidyOptSetInt(this.tdoc, opt, val) == 1 {
+		return false, nil
+	}
+	return true, nil
+}
+
+func (this *Tidy) optSetCharEncoding(val *C.tmbchar) (bool, error) {
+	if C.tidySetCharEncoding(this.tdoc, val) == 1 {
 		return false, nil
 	}
 	return true, nil
