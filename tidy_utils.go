@@ -10,7 +10,6 @@ import "C"
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"unsafe"
 )
@@ -37,16 +36,12 @@ func Filter(s string) string {
 	t.ShowWarnings(false)
 	t.Quiet(true)
 	t.NewBlocklevelTags("aside,blackbordertext") // 将new-blocklevel-tags属性设置为aside,blackbordertext
-	log.Println("tidy 1")
  	output, _ := t.Tidy(s)
-	log.Println("tidy 2")
 	return output
 }
 
 func (this *Tidy) Free() {
-	log.Println("tidy 3")
 	C.tidyRelease(this.tdoc)
-	log.Println("tidy 4")
 }
 
 func (this *Tidy) Tidy(htmlSource string) (string, error) {
